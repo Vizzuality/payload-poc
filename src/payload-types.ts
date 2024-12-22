@@ -104,6 +104,7 @@ export interface Project {
   id: number;
   name: string;
   description: string;
+  createdBy?: (number | null) | User;
   updatedAt: string;
   createdAt: string;
 }
@@ -209,6 +210,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface ProjectsSelect<T extends boolean = true> {
   name?: T;
   description?: T;
+  createdBy?: T;
   updatedAt?: T;
   createdAt?: T;
 }
