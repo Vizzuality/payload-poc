@@ -38,6 +38,13 @@ export const Projects: CollectionConfig = {
       admin: {
         readOnly: true,
       }
+    },
+    {
+      name: "category",
+      type: "relationship",
+      relationTo: "categories",
+      hasMany: false,
+      required: true,
     }
   ],
 }
