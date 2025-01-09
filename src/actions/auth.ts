@@ -37,11 +37,26 @@ export async function login({ email, password }: {
       })
 
       return { success: true }
-    }else{
+    } else {
       return { success: false, error: "Invalid email or password" }
     }
   } catch (error) {
     console.error("Login error", error);
     return { success: false, error: "An error occurred"}
+  }
+}
+
+export async function logout(): Promise<{
+  success: boolean;
+  error?: string;
+}> {
+  try {
+    const cookieStore = await cookies();
+    cookieStore.delete("payload-token"); // Deletes the HTTP-only cookie
+
+    return { success: true }; // Indicate success
+  } catch (error) {
+    console.error("Logout error:", error);
+    return { success: false, error: "An error occurred during logout" };
   }
 }

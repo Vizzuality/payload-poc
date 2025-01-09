@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { login } from "@/actions/auth";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -32,15 +33,19 @@ export const LoginForm = () => {
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    const l = await login(data);
+    const result= await login(data);
 
-    console.log(l);
+    if (result.success) {
+      redirect("/profile");
+    } else {
+      console.error("Login error:", result.error);
+    }
   };
 
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 min-w-96">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
         <FormField
           control={form.control}
           name="email"
