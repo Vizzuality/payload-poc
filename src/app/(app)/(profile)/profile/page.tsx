@@ -4,11 +4,8 @@ import { redirect } from "next/navigation";
 export default async function ProfilePage() {
   const user = await ame();
 
-  console.log("user", user);
-
   if (!user) {
     redirect("/sign-in");
-    return null;
   }
 
   return (

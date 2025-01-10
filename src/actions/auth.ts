@@ -44,6 +44,7 @@ export async function asignin({ email, password }: SignInProps): Promise<User | 
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       path: "/",
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 8), // 8 hours
     });
 
     return result;
@@ -53,8 +54,6 @@ export async function asignin({ email, password }: SignInProps): Promise<User | 
 }
 
 export async function asignout(): Promise<boolean> {
-  // console.log("payload-token", cookieStore.get("payload-token"));
-
   // const result = await axios.request({
   //   method: "POST",
   //   url: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/logout`,
@@ -64,8 +63,6 @@ export async function asignout(): Promise<boolean> {
   //   // withCredentials: true,
   //   data: {},
   // });
-
-  // console.log("result", result);
 
   // return !!result;
 

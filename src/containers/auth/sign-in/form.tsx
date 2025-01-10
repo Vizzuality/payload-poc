@@ -35,10 +35,7 @@ export const SignInForm = () => {
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data);
     const result = await auth.signin(data);
-
-    console.log(result);
 
     if (result) {
       redirect("/profile");
