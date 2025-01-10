@@ -1,21 +1,21 @@
 'use client';
 
-import { logout } from "@/actions/auth";
+import { signout } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
 
-export const Logout = () => {
-  async function handleLogout() {
-    const result = await logout();
+export const SignOut = () => {
+  async function handleSignOut() {
+    const result = await signout();
 
     if (result.success) {
-      redirect("/login");
+      redirect("/sign-in");
     } else {
       console.error("Logout error:", result.error);
     }
   }
 
   return <Button
-    onClick={handleLogout}
-  >Logout</Button>;
+    onClick={handleSignOut}
+  >Sign out</Button>;
 };

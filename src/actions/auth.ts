@@ -14,7 +14,7 @@ export async function me(): Promise<User | null> {
 }
 
 
-export async function login({ email, password }: {
+export async function signin({ email, password }: {
   email: string;
   password: string;
 }): Promise<{
@@ -46,7 +46,7 @@ export async function login({ email, password }: {
   }
 }
 
-export async function logout(): Promise<{
+export async function signout(): Promise<{
   success: boolean;
   error?: string;
 }> {

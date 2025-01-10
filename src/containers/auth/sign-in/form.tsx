@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { login } from "@/actions/auth";
+import { signin } from "@/actions/auth";
 import { redirect } from "next/navigation";
 
 const formSchema = z.object({
@@ -23,7 +23,7 @@ const formSchema = z.object({
   password: z.string().min(8),
 });
 
-export const LoginForm = () => {
+export const SignInForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,7 +33,7 @@ export const LoginForm = () => {
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    const result= await login(data);
+    const result= await signin(data);
 
     if (result.success) {
       redirect("/profile");

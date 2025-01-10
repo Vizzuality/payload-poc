@@ -8,8 +8,11 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = async ({ children }) => {
   const user = await me();
+
+  console.log('user', user);
+
   if (!user) {
-    redirect('/login');
+    redirect('/sign-in');
     return null;
   }
   return <>{children}</>;
