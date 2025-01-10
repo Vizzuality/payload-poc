@@ -1,16 +1,18 @@
 "use client";
 
-import { signout } from "@/actions/auth";
+import { useAuth } from "@/containers/auth/provider";
 import { redirect } from "next/navigation";
 
 export const SignOut = () => {
-  async function handleSignOut() {
-    const result = await signout();
+  const auth = useAuth();
 
-    if (result.success) {
+  async function handleSignOut() {
+    const result = await auth.signout();
+
+    if (result) {
       redirect("/sign-in");
     } else {
-      console.error("Logout error:", result.error);
+      console.error("Logout error");
     }
   }
 
