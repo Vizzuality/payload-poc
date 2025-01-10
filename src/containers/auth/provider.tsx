@@ -14,8 +14,13 @@ const Context = createContext<AuthContextProps>({
   signout: async () => false,
 });
 
-export const AuthProvider = ({ children }: PropsWithChildren) => {
-  const [user, setUser] = useState<User | null>(null);
+export const AuthProvider = ({
+  children,
+  initialUser,
+}: PropsWithChildren<{
+  initialUser: User | null;
+}>) => {
+  const [user, setUser] = useState<User | null>(initialUser);
 
   const signin = useCallback(async (props: SignInProps) => {
     const user = await asignin(props);
