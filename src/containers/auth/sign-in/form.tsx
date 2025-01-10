@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import { useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,8 +13,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { signin } from "@/actions/auth";
 import { redirect } from "next/navigation";
 
@@ -29,23 +29,22 @@ export const SignInForm = () => {
     defaultValues: {
       email: "",
       password: "",
-    }
+    },
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    const result= await signin(data);
+    const result = await signin(data);
 
     if (result.success) {
       redirect("/profile");
     } else {
       console.error("Login error:", result.error);
     }
-  };
-
+  }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-full">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4">
         <FormField
           control={form.control}
           name="email"

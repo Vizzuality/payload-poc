@@ -1,4 +1,4 @@
-import { Access } from 'payload';
-import { checkRole } from './check-role';
+import { Access } from "payload";
+import { checkRole } from "./check-role";
 
-export const admins: Access = ({ req: { user } }) => checkRole(['admin'], user)
+export const admins: Access = ({ req: { user } }) => checkRole(["admin"], user);

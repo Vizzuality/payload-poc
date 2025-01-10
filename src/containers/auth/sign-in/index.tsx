@@ -1,4 +1,4 @@
-import { SignInForm } from "@/containers/auth/sign-in/form"
+import { SignInForm } from "@/containers/auth/sign-in/form";
 
 export const SignIn = () => {
   return (

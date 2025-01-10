@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 import { User } from "@/payload-types";
 import config from "@payload-config";
@@ -13,11 +13,7 @@ export async function me(): Promise<User | null> {
   return user || null;
 }
 
-
-export async function signin({ email, password }: {
-  email: string;
-  password: string;
-}): Promise<{
+export async function signin({ email, password }: { email: string; password: string }): Promise<{
   success: boolean;
   error?: string;
 }> {
@@ -28,21 +24,21 @@ export async function signin({ email, password }: {
       data: { email, password },
     });
 
-    if (result.token){
+    if (result.token) {
       const cookieStore = await cookies();
       cookieStore.set("payload-token", result.token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         path: "/",
-      })
+      });
 
-      return { success: true }
+      return { success: true };
     } else {
-      return { success: false, error: "Invalid email or password" }
+      return { success: false, error: "Invalid email or password" };
     }
   } catch (error) {
     console.error("Login error", error);
-    return { success: false, error: "An error occurred"}
+    return { success: false, error: "An error occurred" };
   }
 }
 

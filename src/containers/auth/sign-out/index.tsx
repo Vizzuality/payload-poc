@@ -1,7 +1,6 @@
-'use client';
+"use client";
 
 import { signout } from "@/actions/auth";
-import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
 
 export const SignOut = () => {
@@ -15,7 +14,5 @@ export const SignOut = () => {
     }
   }
 
-  return <Button
-    onClick={handleSignOut}
-  >Sign out</Button>;
+  return <button onClick={handleSignOut}>Sign out</button>;
 };

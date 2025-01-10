@@ -1,20 +1,13 @@
-import { admins } from '@/collections/access/admins';
-import { adminsAndUser } from '@/collections/access/admins-and-user';
-import { anyone } from '@/collections/access/anyone';
-import type { CollectionConfig } from 'payload';
+import { admins } from "@/collections/access/admins";
+import { adminsAndUser } from "@/collections/access/admins-and-user";
+import { anyone } from "@/collections/access/anyone";
+import type { CollectionConfig } from "payload";
 
 export const Users: CollectionConfig = {
-  slug: 'users',
-  auth: {
-    tokenExpiration: 28800, // 8 hours
-    cookies: {
-      sameSite: "None",
-      secure: true,
-      domain: process.env.COOKIE_DOMAIN,
-    }
-  },
+  slug: "users",
+  auth: true,
   admin: {
-    useAsTitle: 'email',
+    useAsTitle: "email",
   },
   access: {
     read: adminsAndUser,
@@ -24,8 +17,8 @@ export const Users: CollectionConfig = {
   },
   fields: [
     {
-      name: 'roles',
-      type: 'select',
+      name: "roles",
+      type: "select",
       hasMany: true,
       saveToJWT: true,
       required: true,
@@ -34,14 +27,14 @@ export const Users: CollectionConfig = {
       // },
       options: [
         {
-          label: 'Admin',
-          value: 'admin',
+          label: "Admin",
+          value: "admin",
         },
         {
-          label: 'User',
-          value: 'user',
+          label: "User",
+          value: "user",
         },
       ],
     },
   ],
-}
+};

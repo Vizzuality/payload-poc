@@ -3,26 +3,24 @@ import { createdBy } from "@/collections/hooks/created-by";
 import { CollectionConfig } from "payload";
 
 export const Projects: CollectionConfig = {
-  slug: 'projects',
+  slug: "projects",
   access: {
     read: adminsAndCreatedBy,
     update: adminsAndCreatedBy,
     delete: adminsAndCreatedBy,
   },
   hooks: {
-    beforeChange: [
-      createdBy,
-    ],
+    beforeChange: [createdBy],
   },
   fields: [
     {
-      name: 'name',
-      type: 'text',
+      name: "name",
+      type: "text",
       required: true,
       localized: true,
     },
     {
-      name: 'description',
+      name: "description",
       type: "textarea",
       required: true,
       localized: true,
@@ -37,7 +35,7 @@ export const Projects: CollectionConfig = {
       },
       admin: {
         readOnly: true,
-      }
+      },
     },
     {
       name: "category",
@@ -45,6 +43,6 @@ export const Projects: CollectionConfig = {
       relationTo: "categories",
       hasMany: false,
       required: true,
-    }
+    },
   ],
-}
+};
