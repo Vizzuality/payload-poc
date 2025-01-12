@@ -1,7 +1,6 @@
 "use client";
 
 import { useAuth } from "@/containers/auth/provider";
-import { redirect } from "next/navigation";
 
 export const SignOut = () => {
   const auth = useAuth();
@@ -9,9 +8,7 @@ export const SignOut = () => {
   async function handleSignOut() {
     const result = await auth.signout();
 
-    if (result) {
-      redirect("/sign-in");
-    } else {
+    if (!result) {
       console.error("Logout error");
     }
   }

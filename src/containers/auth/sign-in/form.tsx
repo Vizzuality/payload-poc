@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { redirect } from "next/navigation";
 import { useAuth } from "@/containers/auth/provider";
 
 const formSchema = z.object({
@@ -37,9 +36,7 @@ export const SignInForm = () => {
   async function onSubmit(data: z.infer<typeof formSchema>) {
     const result = await auth.signin(data);
 
-    if (result) {
-      redirect("/profile");
-    } else {
+    if (!result) {
       console.error("Login error");
     }
   }

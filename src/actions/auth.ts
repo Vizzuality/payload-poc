@@ -40,10 +40,12 @@ export async function asignin({ email, password }: SignInProps): Promise<User | 
 
   if (result?.token) {
     const cookieStore = await cookies();
+
     cookieStore.set("payload-token", result.token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       path: "/",
+      sameSite: "strict",
       expires: new Date(Date.now() + 1000 * 60 * 60 * 8), // 8 hours
     });
 
@@ -54,7 +56,7 @@ export async function asignin({ email, password }: SignInProps): Promise<User | 
 }
 
 export async function asignout(): Promise<boolean> {
-  // const result = await axios.request({
+  // await axios.request({
   //   method: "POST",
   //   url: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/logout`,
   //   headers: {

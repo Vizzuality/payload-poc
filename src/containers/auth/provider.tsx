@@ -1,5 +1,6 @@
 import { asignin, asignout, SignInProps } from "@/actions/auth";
 import { User } from "@/payload-types";
+import { redirect } from "next/navigation";
 import { createContext, PropsWithChildren, useCallback, useContext, useState } from "react";
 
 type AuthContextProps = {
@@ -26,14 +27,19 @@ export const AuthProvider = ({
     const user = await asignin(props);
     setUser(user);
 
+    if (user) {
+      redirect("/sign-in");
+    }
+
     return user;
   }, []);
 
   const signout = useCallback(async () => {
-    const result = await asignout();
+    await asignout();
 
     setUser(null);
-    return result;
+
+    redirect(window.location.origin + window.location.pathname);
   }, []);
 
   return (
